@@ -2,7 +2,7 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 
-URL = "http://192.168.1.13/.hidden/"
+URL = "http://10.12.1.138/.hidden/"
 
 s = ''
 
@@ -25,13 +25,14 @@ def f(s):
         l.append(link.get('href'))
     l = l[1:]
     if 'README' in l:
-        print('README on %s' % URL+s+'README')
+        #print('README on %s' % URL+s+'README')
         r = requests.get(URL+s+'README')
         data = r.text.replace('\n', '')
         
         if data not in resp:
+            print('README on %s' % URL+s+'README')
             print("'%s'" % r.text)
-            sys.exit()  
+            #sys.exit()  
 
     for e in l:
         f(s+e)
