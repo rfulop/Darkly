@@ -4,19 +4,28 @@
 
 
 ## Description de la vulnérabilité:
-Un cookie 
+Un cookie valable sur toutes les pages de l'application web contient la clef `I_am_admin`.
+La valeur de cette clef est:
+```
+68934a3e9455fa72420237eb05902327
+```
+Soit `false` en MD5.
 
-La page permettant d'attribuer des notes aux `subject` utilise une requête de type GET possedant deux parametres `sujet` et `valeur`.
-Il est possible d'attribuer à `valeur` un nombre < 1 et > 10 afin de fausser le resultat de `average`. 
+On hash `true` en MD5 soit:
+```
+b326b5062b2f0e69046810717534cb09
+```
+On modifie la valeur du cookie puis on actualise la page. On est connecté en administrateur.
 
-
-
-
+Par ailleurs, on remarque que les attributs `secure` et `httpOnly` sont set a `False`, ce qui est un defaut de sécurité.
+`secure` force l'utilisation de HTTPS pour l'envoie du cookie afin de mitiger les attaques de type man-in-the-middle.
+`httpOnly` indique aux navigateurs Web de ne pas autoriser les scripts.
 
 ## Scénario  d'attaque:
-En modifiant la valeur de la note, on pourrait faire diminuer ou augmenter la moyenne de façon non controlé.
+Modifier la valeur du cookie et lui attribuer la valeur de `true` en md5 permet d'etre connecté en administrateur sur l'application web et ainsi d'acceder aux fonctionnalités d'administration.
 
 
 ## Correctifs:
-- Utiliser une methode de validation côté back, permettant d'ignorer toutes les valeurs non compris dans l'interval délimité.
-- Stocker un id pour chaque utilisateur afin de prendre en compte les requêtes provenant d'utilisateurs n'ayant pas encore voté.
+- Utiliser des `id` de session, generer aleatoirement et les renouveler regulierement.
+- Se baser sur un systeme de token ou d'id de session pour accorder ou non des privileges plus élevé à un utilisateur.
+- Définir à `true` les attributs `secure` et `http_only`.
