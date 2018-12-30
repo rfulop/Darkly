@@ -47,7 +47,7 @@ Flag:
 ______________________________________________________________________________________________________-
 
 Httpaccess / robot.text
-acceder a l url avec la route /robots.txt puis une liste de routes est apparu et j'ai utilisé la route "whatever" qui m'a donné accées au fichier htpasswd dans lequel il y avait un user "root" et un mdp hasher en md5 que j'ai dechiffré et puis je me suis connecté en admin sur le site via la route/admin
+accéder à l’url avec la route /robots.txt puis nous avons liste de routes et nous utilisons la route "whatever" qui nous a donné un fichier htpasswd dans lequel il y a un user "root" et un password hasher en md5 que nous devons déchiffré et puis nous connecté en admin sur le site via la route/admin
 Flag:
 d19b4823e0d5600ceed56d5e896ef328d7a2b9e7ac7e80f4fcdb9b10bcb3e7ff
 

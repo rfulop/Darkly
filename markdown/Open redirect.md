@@ -6,7 +6,7 @@ En bas de la page, on remarque des liens vers les réseaux sociaux dont la redir
 En modifiant la valeur de ce champ, on est en mesure de rediriger un utilisateur vers une URL .
 
 ## Scénario d'attaque:
-Une attaque par hameçonnage dans laquelle un attaquant usurperait un site web. Si les utilisateurs ne font pas attention a la barre d'URL, ils pourraient saisir leurs identifiants sur un site web malveillant imitant un site légitime, et les communiquer à un attaquant.
+Une attaque par hameçonnage dans laquelle un attaquant usurperait un site web. Si les utilisateurs ne font pas attention à la barre d'URL, ils pourraient saisir leurs identifiants sur un site web malveillant imitant un site légitime, et les communiquer à un attaquant.
 
 ## Correctifs :
 - Ne pas utiliser de redirection.

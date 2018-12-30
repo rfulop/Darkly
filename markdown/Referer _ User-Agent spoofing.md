@@ -18,9 +18,9 @@ Il ne s'agit pas d'une vulnerabilité.
 Dans certains cas, modifier les headers des paquets HTTP permet d'acceder à d'autres vulnerabilités côté serveur, comme les Cross-Site Request Forgery ou encore les XSS.
 
 ## Correctifs: 
-- Certains headers HTTP ne sont pas sécurisables. Ansi, si on souhaite filtrer l'origine des paquets HTTP on peut utiliser un système de token ou une verification sur des `ids` de séssion.
+- Certains headers HTTP ne sont pas sécurisables. Ainsi, si on souhaite filtrer l'origine des paquets HTTP on peut utiliser un système de token ou une vérification sur des `ids` de session.
 - Ne pas écrire des informations sensibles en commentaires dans le code.
-- Utilser les `Security Headers` definies par l'OWASP:
+- Utilser les `Security Headers` définies par l'OWASP:
 ```
 X-Frame-Options: SAMEORIGIN [1]
 X-XSS-Protection: 1; mode=block [2]
