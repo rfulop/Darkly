@@ -18,14 +18,14 @@ b326b5062b2f0e69046810717534cb09
 On modifie la valeur du cookie puis on actualise la page. On est connecté en administrateur.
 
 Par ailleurs, on remarque que les attributs `secure` et `httpOnly` sont set a `False`, ce qui est un defaut de sécurité.
-`secure` force l'utilisation de HTTPS pour l'envoie du cookie afin de mitiger les attaques de type man-in-the-middle.
+`secure` force l'utilisation de HTTPS pour l'envoi du cookie afin de mitiger les attaques de type man-in-the-middle.
 `httpOnly` indique aux navigateurs Web de ne pas autoriser les scripts.
 
 ## Scénario  d'attaque:
-Modifier la valeur du cookie et lui attribuer la valeur de `true` en md5 permet d'etre connecté en administrateur sur l'application web et ainsi d'acceder aux fonctionnalités d'administration.
+Modifier la valeur du cookie et lui attribuer la valeur de `true` en md5 permet d'être connecté en administrateur sur l'application web et ainsi d'accéder aux fonctionnalités d'administration.
 
 
 ## Correctifs:
-- Utiliser des `id` de session, generer aleatoirement et les renouveler regulierement.
-- Se baser sur un systeme de token ou d'id de session pour accorder ou non des privileges plus élevé à un utilisateur.
+- Utiliser des `id` de session, générer aléatoirement et les renouveler régulièrement.
+- Se baser sur un système de token ou d'id de session pour accorder ou non des privilèges plus élevés à un utilisateur.
 - Définir à `true` les attributs `secure` et `http_only`.
